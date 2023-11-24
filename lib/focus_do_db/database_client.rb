@@ -16,7 +16,6 @@ module FocusDoDb
         value: public_ip
       )
 
-      puts "Adding IP #{public_ip} to firewall"
       do_client.databases.set_firewall_rules(firewall_rules, id: config.db_id)
     end
 
@@ -27,7 +26,6 @@ module FocusDoDb
         rule.type == "ip_addr" && rule.value == public_ip
       end
 
-      puts "Removing IP #{public_ip} from firewall"
       do_client.databases.set_firewall_rules(firewall_rules, id: config.db_id)
     end
 
@@ -44,14 +42,14 @@ module FocusDoDb
       "mysql2://#{username}:#{password}@#{host}:#{port}/#{database_name}?ssl-mode=REQUIRED"
     end
 
+    def public_ip
+      @public_ip ||= Net::HTTP.get(URI('https://api.ipify.org'))
+    end
+
     private
 
     def do_client
       @do_client ||= DropletKit::Client.new(access_token: config.do_api_key)
-    end
-
-    def public_ip
-      @public_ip ||= Net::HTTP.get(URI('https://api.ipify.org'))
     end
   end
 end
