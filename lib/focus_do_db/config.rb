@@ -2,7 +2,10 @@ module FocusDoDb
   class Config
     def initialize
       @config ||= YAML.load_file(Rails.root.join("config/focus_do_db.yml"))
-      @db_config ||= YAML.load_file(Rails.root.join("config/database.yml"))
+      @db_config ||= YAML.load_file(
+        Rails.root.join("config/database.yml"),
+        aliases: true
+      )
     end
 
     def enabled?
@@ -10,7 +13,7 @@ module FocusDoDb
     end
 
     def database
-      ENV['FOCUS_DO_DB']
+      ENV["FOCUS_DO_DB"]
     end
 
     def do_api_key
