@@ -5,6 +5,6 @@ Gem::Specification.new do |s|
   s.authors = ["Neil Smith", "Tyler Samuelson"]
   s.files = ["lib/**/*"]
 
-  s.add_dependency('droplet_kit', '~> 3.7')
+  s.add_dependency('droplet_kit')
   s.add_dependency('paint')
 end
