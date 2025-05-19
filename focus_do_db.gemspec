@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "focus_do_db"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
   s.summary = "Focus Digital Ocean DB Connections"
   s.authors = ["Neil Smith", "Tyler Samuelson"]
   s.files = ["lib/**/*"]
