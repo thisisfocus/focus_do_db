@@ -1,4 +1,5 @@
 require "droplet_kit"
+require "open-uri"
 
 module FocusDoDb
   class DatabaseClient
@@ -43,7 +44,7 @@ module FocusDoDb
     end
 
     def public_ip
-      @public_ip ||= Net::HTTP.get(URI('https://api.ipify.org'))
+      @public_ip ||= URI.open("https://api.ipify.org").read
     end
 
     private
